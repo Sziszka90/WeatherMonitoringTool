@@ -1,0 +1,9 @@
+version: '3.3'
+
+services:
+  weather-monitoring:
+    build: ./
+    volumes:
+        - ./weatherApp
+    ports:
+      - 5001:80
