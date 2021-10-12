@@ -1,30 +1,30 @@
 from datetime import datetime, timedelta
 
-def sunsetOrSunrise(items):
+def sunset_or_sunrise(items: list) -> dict:
 
     result = {}
 
-    timeNow = datetime.now().timestamp()
+    time_now = datetime.now().timestamp()
 
-    timeSetRise = min(items, key=lambda x: abs(x - timeNow))
+    time_set_rise = min(items, key=lambda x: abs(x - time_now))
 
-    if(timeSetRise == items[0]):
-        if(timeSetRise > timeNow):
-            result['Sunrise'] = str(timedelta(seconds=(timeSetRise - timeNow)))
+    if(time_set_rise == items[0]):
+        if(time_set_rise > time_now):
+            result['Sunrise'] = str(timedelta(seconds=(time_set_rise - time_now)))
             return result 
         else:
-            result['Sunrise'] = '-' + str(timedelta(seconds=(timeNow - timeSetRise)))
+            result['Sunrise'] = '-' + str(timedelta(seconds=(time_now - time_set_rise)))
             return result  
     else:
-        if(timeSetRise > timeNow):
-            result['Sunset'] = str(timedelta(seconds=(timeSetRise - timeNow)))
+        if(time_set_rise > time_now):
+            result['Sunset'] = str(timedelta(seconds=(time_set_rise - time_now)))
             return result 
         else:
-            result['Sunset'] = '-' + str(timedelta(seconds=(timeNow - timeSetRise)))
+            result['Sunset'] = '-' + str(timedelta(seconds=(time_now - time_set_rise)))
             return result  
 
 
-def prediction(cloudiness, temp):
+def prediction(cloudiness: int, temp: float) -> str:
     cloudiness = abs(cloudiness - 100)
 
     if cloudiness == 0:

@@ -4,6 +4,12 @@ services:
   weather-monitoring:
     build: ./
     volumes:
-        - ./weatherApp
+        - ./:/WeatherApp
     ports:
       - 5001:80
+    environment:
+    - CITY=Budapest
+    - API_KEY=2a1453dedffb4629bc988e28b59f163c
+    - URL=https://api.openweathermap.org/data/2.5/weather?q=
+    - CITIES=Budapest,Warsaw,Prague,Wien
+
