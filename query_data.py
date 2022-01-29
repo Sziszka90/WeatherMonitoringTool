@@ -45,6 +45,11 @@ def query_from_api() -> Dict:
             raise SystemExit(e)
         
         data_to_plot[city] = response.json()['main']['temp']
+        data_to_plot["Budapest"] = 45.00
+        data_to_plot["Warsaw"] = 15.00
+        data_to_plot["Prague"] = 45.00
+        data_to_plot["Wien"] = 25.00
+
 
     
     return data, data_to_plot

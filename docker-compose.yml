@@ -3,13 +3,31 @@ version: '3.3'
 services:
   weather-monitoring:
     build: ./
+    container_name: weather-monitoring-tool
     volumes:
-        - ./:/WeatherApp
+      - ./data:/weatherApp/data
+      - ./plots:/weatherApp/plots
     ports:
-      - 5001:80
+      - 5000:5000
     environment:
     - CITY=Budapest
     - API_KEY=2a1453dedffb4629bc988e28b59f163c
     - URL=https://api.openweathermap.org/data/2.5/weather?q=
     - CITIES=Budapest,Warsaw,Prague,Wien
+    - DB_USER=User
+    - DB_PASSWORD=1234
+    - DB_PORT=27017
+    - DB_NAME=db
+    - TIME_REQUEST=10
+    links:
+      - db
+
+  db:
+    image: mongo:latest
+    container_name: database
+    ports:
+      - 5001:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=User
+      - MONGO_INITDB_ROOT_PASSWORD=1234
 
